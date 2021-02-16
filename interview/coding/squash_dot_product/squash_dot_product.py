@@ -1,18 +1,78 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python3 -m doctest -v
 """
-Given two vectors in squash form.
+Given two vectors in short format.
 Calculate dot product.
 
-For vector `-1 2 3 3 3 3 3` squash form will be `1 -1 1 2 5 3`
+For vector `-1 2 3 3 3 3 3` short format will be `1 -1 1 2 5 3`
 
-In other words it's alternating format of 
-counts and values for consequent goups.
+In other words it's alternating format of counts and values.
+
+Test runs like this:
+$ python3 -m doctest -v __file__
+or
+$ run as ./__file__
 """
 
 from typing import List
 
 
-def dot_product(a: List[int], b: List[int]) -> int:
+def dot_product1(A: List[int], B: List[int]) -> int:
+    """
+    >>> dot_product1([1, 1, 1, 2, 1, 3], [3, 1])
+    6
+    >>> dot_product1(
+    ...         [50_000, 1, 50_000, 2],
+    ...         [10_000, 1, 50_000, 2, 40_000, 3])
+    370000
+    >>> dot_product1([1, 1, 1, 1], [1, 2, 1, 3])
+    5
+    >>> dot_product1([1, 1], [1, -1])
+    -1
+    >>> dot_product2(
+    ...    [1, -1, 2, 2, 3, -3, 4, 4, 5, -5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 999945, -1],
+    ...    [999945, 2, 10, 10, 9, 9, 8, -8, 7, 7, 6, 6, 5, 5, 4, 4, 3, 3, 2, 2, 1, 1])
+    -1999407
+    """
+    len_B = len(B)
+
+    # two cursors idea
+    r = j = cursor_B = value_B = 0
+
+    for cursor_A, value_A in zip(A[::2], A[1::2]):
+
+        # cover all full inclusions of intervals from B (if any)
+        while j < len_B and cursor_B <= cursor_A:
+            r += cursor_B * value_A * value_B
+            cursor_A -= cursor_B
+            cursor_B = B[j]
+            value_B = B[j + 1]
+            j += 2
+
+        # process the rest of interval from A
+        if cursor_A > 0:
+            r += cursor_A * value_A * value_B
+            cursor_B -= cursor_A
+
+    return r
+
+
+def dot_product2(a: List[int], b: List[int]) -> int:
+    """
+    >>> dot_product2([1, 1, 1, 2, 1, 3], [3, 1])
+    6
+    >>> dot_product2(
+    ...         [50_000, 1, 50_000, 2],
+    ...         [10_000, 1, 50_000, 2, 40_000, 3])
+    370000
+    >>> dot_product2([1, 1, 1, 1], [1, 2, 1, 3])
+    5
+    >>> dot_product2([1, 1], [1, -1])
+    -1
+    >>> dot_product2(
+    ...    [1, -1, 2, 2, 3, -3, 4, 4, 5, -5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 999945, -1],
+    ...    [999945, 2, 10, 10, 9, 9, 8, -8, 7, 7, 6, 6, 5, 5, 4, 4, 3, 3, 2, 2, 1, 1])
+    -1999407
+    """
     n = len(a)
     m = len(b)
     i = 0
@@ -39,28 +99,3 @@ def dot_product(a: List[int], b: List[int]) -> int:
         count2 -= common_count
 
     return r
-
-
-import unittest
-
-
-class T(unittest.TestCase):
-
-    def test_1(_):
-        assert 6 == dot_product([1, 1, 1, 2, 1, 3], [3, 1])
-
-    def test_2(_):
-        # 10k 1*1 40k 1*2 10k 2*2 40k 2*3 = 10k + 80k + 40k + 6*40k = 370k
-        assert 370_000 == dot_product(
-            [50_000, 1, 50_000, 2],
-            [10_000, 1, 50_000, 2, 40_000, 3])
-
-    def test_3(_):
-        assert 5 == dot_product([1, 1, 1, 1], [1, 2, 1, 3])
-
-    def test_4(_):
-        assert -1 == dot_product([1, 1], [1, -1])
-
-
-if __name__ == '__main__':
-    unittest.main()
