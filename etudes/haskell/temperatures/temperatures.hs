@@ -1,18 +1,14 @@
 -- https://www.codingame.com/ide/puzzle/temperatures
 
-import System.IO
-
-main = interact $ show.f.map read.words.head.tail.lines
+main = interact $ show . f . map read . tail . words
 
 f [] = 0
-f [x] = x
-f (x : xs) = cmp x $ f xs
+f x = foldl1 cmp x
 
 cmp x y
-    | ax > ay  = y
-    | ax < ay  = x
-    | ax == ay = max x y
-    where
-        ax = abs x
-        ay = abs y
-
+  | ax > ay = y
+  | ax < ay = x
+  | ax == ay = max x y
+  where
+    ax = abs x
+    ay = abs y
