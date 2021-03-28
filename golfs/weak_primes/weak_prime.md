@@ -1,3 +1,6 @@
+
+https://www.codingame.com/contribute/view/2044a303fbd66861f688bbee0e0ee5b1809
+
 A prime is said to be weak if it smaller than the average of the two surrounding primes
 For example, 13 is a weak prime since it is less than the average of the two surrounding primes 11 and 17.
 A prime is said to be balanced if it is the average of the two surrounding primes, i.e., it is at equal distance from previous prime and next prime.
