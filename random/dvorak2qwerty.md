@@ -1,3 +1,16 @@
+```
+QWERTY (US Style):
+1234567890-=
+qwertyuiop[]
+asdfghjkl;'
+zxcvbnm,./
+
+Dvorak:
+1234567890[]
+',.pyfgcrl/=
+aoeuidhtns-
+;qjkxbmwvz
+```
 
 ## Bash
 
