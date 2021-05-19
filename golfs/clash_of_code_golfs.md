@@ -1,3 +1,13 @@
+# The Cheater
+
+Each 4 questions you can pick 3 answers from other player and guess others "C"
+
+```ruby
+(n,*_),a,b=$<.map{_1.split}
+puts"%.2f%%"%[100*a.zip(b).each_slice(4).sum{|x|
+[[x.count{|y,z|y==z&&y!=?C},3].min+x.count{|y,z|y==?C},x.size].min}/n.to_f]
+```
+
 # Sum of all happy numbers from 1..n
 
 ```ruby
