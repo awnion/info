@@ -1,3 +1,11 @@
+# DNA/RNA validator
+```ruby
+a=gets.scan(/[^ACGTU]/)*''
+b=$_.scan(/[ACGTU]/).uniq*''
+v='IN'+i="VALID "
+puts a[0]?v+a:/U.*T/?v+'UT':/T.*U/?v+'TU':/U/?i+"RNA "+b:/T/?i+"DNA "+b:i+"UNKNOWN "+b
+```
+
 # The Cheater
 
 Each 4 questions you can pick 3 answers from other player and guess others "C"
