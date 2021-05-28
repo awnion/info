@@ -1,3 +1,10 @@
+# Cypher
+```ruby
+puts`dd`.gsub(/(\S+)([-+])(\S+)/){t=$3.split(?,)*s.size
+o=$2>?+?-1:1
+$1.bytes.zip(t.map{|x|(x=~/\d+/?x.to_i:x.ord)*o}).map{(_1+_2).chr}*''}
+```
+
 # DNA/RNA validator
 ```ruby
 a=gets.scan(/[^ACGTU]/)*''
