@@ -1,8 +1,10 @@
 # Cypher
+
+  aaa+1,2,3 ttt-1,2,3   --->   bcd srq
+
 ```ruby
-puts`dd`.gsub(/(\S+)([-+])(\S+)/){t=$3.split(?,)*s.size
-o=$2>?+?-1:1
-$1.bytes.zip(t.map{|x|(x=~/\d+/?x.to_i:x.ord)*o}).map{(_1+_2).chr}*''}
+puts`dd`.gsub(/(\S+)([-+])(\S+)/){o=$2>?+?-1:1
+$1.bytes.zip(($3.split(?,)*$1.size).map{|x|o*(x=~/\d+/?x.to_i: x.ord)}).map{(_1+_2).chr}*''}
 ```
 
 # DNA/RNA validator
