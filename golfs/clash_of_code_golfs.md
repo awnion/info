@@ -9,6 +9,13 @@ $1.bytes.zip(($3.split(?,)*$1.size).map{|x|o*(x=~/\d+/?x.to_i: x.ord)}).map{(_1+
 
 # DNA/RNA validator
 ```ruby
+a=gets.tr'ACGTU',''
+b=$_.scan(/[ACGTU]/).uniq*''
+i='IN'+v="VALID "
+puts a[0]?i+a:/U/&&/T/?i+$_.tr('^UT',''):v+(/U/?"RNA":/T/?"DNA":'UNKNOWN')+' '+b
+
+# old version for history
+__END__
 a=gets.scan(/[^ACGTU]/)*''
 b=$_.scan(/[ACGTU]/).uniq*''
 v='IN'+i="VALID "
