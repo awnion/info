@@ -5,3 +5,7 @@ $b=<>=~s/\n//gr;
 $r=qr/$a(?=$b)|(?<=$b)$a/;
 $_=()=<>=~/$e/g;
 print
+
+
+# oposite problem with escapings
+# `dd`=~/(.).(.)./s;print$-=()=$'=~/(?<!\Q$2\E)\Q$1\E(?!\Q$2\E)/g
