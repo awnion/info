@@ -2,9 +2,11 @@
 
 🦀 95% of Rustaceans do this wrong 😭
 
-
 The first problem is the most obvious one:
- tokio::spawn(... -- is not handled
+
+```rust
+tokio::spawn(... // -- is not handled
+```
 
 Which is bad of course, but it's on the surface.
 
@@ -18,15 +20,16 @@ Now we have a problem, since we have an infinite loop at the end of the main fun
 
 Here most Rustaceans
 
- [ ] either **give up** and keep tokio subroutine just **unhandled** (which will sooner or later lead to disaster)
+[ ] either **give up** and keep tokio subroutine just **unhandled** (which will sooner or later lead to disaster)
 
- [*] or use mpsc channel (which is fine most of the time, but a bit too verbose).
+[*] or use mpsc channel (which is fine most of the time, but a bit too verbose).
 
 There are multiple solutions. Most of the time tokio::select! {} will be enough. Because you can race your coroutines without introducing extra complexity with channels. While you can handle both: join error from the join handle and actual error from inside the coroutine in the same place with just a double question mark "??".
 
 ## What are you waiting for? Go and play with the code 🧑‍💻
 
- - ❌ https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=62019a47383972486ba92c14ac1e0ac6
+- ❌ <https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=62019a47383972486ba92c14ac1e0ac6>
+
 ```rust
 use std::time::Duration;
 
@@ -55,7 +58,7 @@ async fn main() {
 }
 ```
 
- - ✅ https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=e6b4fb8b53e62898369a2524547a43b5
+- ✅ <https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=e6b4fb8b53e62898369a2524547a43b5>
 
 ```rust
 use std::time::Duration;
