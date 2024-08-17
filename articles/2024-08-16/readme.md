@@ -2,6 +2,8 @@
 
 🦀 95% of Rustaceans do this wrong 😭
 
+![_](<image.png>)
+
 The first problem is the most obvious one:
 
 ```rust
@@ -16,7 +18,7 @@ Ok, let's handle it:
 let handle = tokio::spawn(async { /* ... */ });
 ```
 
-Now we have a problem, since we have an infinite loop at the end of the main function, and we need to await our "handle". Where do you put the `handle.await`?
+Now we have another problem, since we have an infinite loop at the end of the main function, and we need to `await` our "handle". Where do you put the `handle.await`?
 
 Here most Rustaceans
 
